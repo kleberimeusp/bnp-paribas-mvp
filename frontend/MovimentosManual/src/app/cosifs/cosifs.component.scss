@@ -1,0 +1,108 @@
+h2 {
+  color: #006837;
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.form-row label {
+  width: 100px;
+  font-weight: bold;
+}
+
+.form-row input,
+.form-row select {
+  flex: 1;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-actions {
+  margin-top: 15px;
+}
+
+.form-actions button {
+  margin-right: 10px;
+  padding: 6px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.form-actions button[type="submit"] {
+  background-color: #007a3d;
+  color: #fff;
+}
+
+.form-actions button[type="button"] {
+  background-color: #ccc;
+  color: #333;
+}
+
+.form-actions button[type="button"]:hover,
+.form-actions button[type="submit"]:hover {
+  opacity: 0.9;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th {
+  background-color: #006837;
+  color: #fff;
+  padding: 8px;
+  text-align: left;
+}
+
+table td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+table td button {
+  margin-right: 5px;
+  padding: 4px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+table td button:first-child {
+  background-color: #28a745; /* editar: verde */
+  color: #fff;
+}
+
+table td button:last-child {
+  background-color: #dc3545; /* excluir: vermelho */
+  color: #fff;
+}
+
+table td button:hover {
+  opacity: 0.85;
+}
+
+.btn-voltar {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px 18px;
+  background-color: #007a3d;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.btn-voltar:hover {
+  opacity: 0.9;
+}

@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "SuaSenhaForteAqui123!"
+    ports:
+      - "1434:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+      - ./script/init.sql:/scripts/init.sql
+      - ./entrypoint.sh:/scripts/entrypoint.sh
+    command: [ "/bin/bash", "/scripts/entrypoint.sh" ]
+    healthcheck:
+      test: [ "CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P SuaSenhaForteAqui123! -Q 'SELECT 1'" ]
+      interval: 10s
+      retries: 10
+
+  backend:
+    build:
+      context: .
+      dockerfile: MovimentosManual.Api/Dockerfile
+    container_name: backend
+    ports:
+      - "5000:80"
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DOTNET_RUNNING_IN_CONTAINER=true
+
+volumes:
+  sql_data:

@@ -1,0 +1,117 @@
+<a routerLink="/home" class="btn-voltar">Voltar</a>
+
+<h2>Movimentos Manuais</h2>
+
+<form (ngSubmit)="onSubmit()" #formMovimentos="ngForm">
+  <div class="form-row">
+    <label for="mes">Mês:</label>
+    <input
+      type="number"
+      id="mes"
+      [(ngModel)]="movimento.mes"
+      name="mes"
+      required
+      min="1"
+      max="12"
+    />
+
+    <label for="ano">Ano:</label>
+    <input
+      type="number"
+      id="ano"
+      [(ngModel)]="movimento.ano"
+      name="ano"
+      required
+      min="1900"
+      max="2100"
+    />
+  </div>
+
+  <div class="form-row">
+    <label for="codigoProduto">Produto:</label>
+    <select
+      id="codigoProduto"
+      [(ngModel)]="movimento.codigoProduto"
+      name="codigoProduto"
+      required
+    >
+      <option value="" disabled>Selecione</option>
+      <option *ngFor="let produto of produtos" [value]="produto.codigoProduto">
+        {{ produto.descricao }}
+      </option>
+    </select>
+
+    <label for="codigoCosif">Cosif:</label>
+    <select
+      id="codigoCosif"
+      [(ngModel)]="movimento.codigoCosif"
+      name="codigoCosif"
+      required
+    >
+      <option value="" disabled>Selecione</option>
+      <option *ngFor="let cosif of cosifs" [value]="cosif.codigoCosif?.trim()">
+        {{ cosif.codigoCosif }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-row">
+    <label for="descricao">Descrição:</label>
+    <input
+      type="text"
+      id="descricao"
+      [(ngModel)]="movimento.descricao"
+      name="descricao"
+      required
+    />
+
+    <label for="valor">Valor:</label>
+    <input
+      type="number"
+      id="valor"
+      [(ngModel)]="movimento.valor"
+      name="valor"
+      step="0.01"
+      required
+      min="0"
+    />
+  </div>
+
+  <div class="form-actions">
+    <button type="button" (click)="novo()">Novo</button>
+    <button type="submit">{{ editando ? 'Atualizar' : 'Incluir' }}</button>
+    <button type="button" (click)="limpar()">Limpar</button>
+  </div>
+</form>
+
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th>Mês</th>
+      <th>Ano</th>
+      <th>Produto</th>
+      <th>Cosif</th>
+      <th>Descrição</th>
+      <th>Valor</th>
+      <th>Nº Lançamento</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let m of movimentos">
+      <td>{{ m.mes }}</td>
+      <td>{{ m.ano }}</td>
+      <td>{{ m.codigoProduto }}</td>
+      <td>{{ m.codigoCosif }}</td>
+      <td>{{ m.descricao }}</td>
+      <td>{{ m.valor | currency: 'BRL':'symbol':'1.2-2' }}</td>
+      <td>{{ m.numeroLancamento }}</td>
+      <td>
+        <button type="button" (click)="editar(m)">Editar</button>
+        <button type="button" (click)="excluir(m.numeroLancamento!)">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

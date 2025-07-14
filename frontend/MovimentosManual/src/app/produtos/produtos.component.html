@@ -1,0 +1,41 @@
+<a routerLink="/home" class="btn-voltar">Voltar</a>
+
+<h2>Cadastro de Produtos</h2>
+
+<form (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <label>Código:</label>
+    <input type="text" [(ngModel)]="produto.codigo" name="codigo" [readonly]="editando" required />
+
+    <label>Descrição:</label>
+    <input type="text" [(ngModel)]="produto.descricao" name="descricao" required />
+  </div>
+
+  <div class="form-actions">
+    <button type="button" (click)="novo()">Novo</button>
+    <button type="submit">{{ editando ? 'Atualizar' : 'Incluir' }}</button>
+    <button type="button" (click)="limpar()">Limpar</button>
+  </div>
+</form>
+
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Descrição</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of produtos">
+      <td>{{ p.codigo }}</td>
+      <td>{{ p.descricao }}</td>
+      <td>
+        <button type="button" (click)="editar(p)" style="background-color: #006341; color: white; border: none; padding: 4px 10px; border-radius: 4px; margin-right: 4px;">Editar</button>
+        <button type="button" (click)="excluir(p.codigo)" style="background-color: #d9534f; color: white; border: none; padding: 4px 10px; border-radius: 4px;">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

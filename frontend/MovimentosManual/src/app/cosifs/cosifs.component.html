@@ -1,0 +1,47 @@
+<a routerLink="/home" class="btn-voltar">Voltar</a>
+
+<h2>Cosifs</h2>
+
+<form (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <label>Produto:</label>
+    <input type="text" [(ngModel)]="cosif.codigoProduto" name="codigoProduto" required />
+
+    <label>Cosif:</label>
+    <input type="text" [(ngModel)]="cosif.codigoCosif" name="codigoCosif" required />
+  </div>
+
+  <div class="form-row">
+    <label>Descrição:</label>
+    <input type="text" [(ngModel)]="cosif.descricao" name="descricao" required />
+  </div>
+
+  <div class="form-actions">
+    <button type="button" (click)="novo()">Novo</button>
+    <button type="submit">{{ editando ? 'Atualizar' : 'Incluir' }}</button>
+  </div>
+</form>
+
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th>Produto</th>
+      <th>Cosif</th>
+      <th>Descrição</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of cosifs">
+      <td>{{ c.codigoProduto }}</td>
+      <td>{{ c.codigoCosif }}</td>
+      <td>{{ c.descricao }}</td>
+      <td>
+        <button type="button" (click)="editar(c)">Editar</button>
+        <button type="button" (click)="excluir(c.codigoProduto, c.codigoCosif)">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
