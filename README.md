@@ -165,11 +165,17 @@ Contribuições são bem-vindas! Para sugerir melhorias, crie uma issue ou envie
 
 ---
 
+## Swagger
+
+![Swagger](/backend/files/swagger.png)
+
+---
+
 ## 📬 Contato
 
 Se precisar de suporte ou tiver dúvidas:
 
-* 💬 Email: [gmail.com](mailto:kleber.ime.usp@gmail.com)
+* 💬 Email: [kleber.ime.usp@gmail.com](mailto:kleber.ime.usp@gmail.com)
 * 💼 LinkedIn: [https://www.linkedin.com/in/kleber-augusto/](https://www.linkedin.com/in/kleber-augusto/)
 
 ---
