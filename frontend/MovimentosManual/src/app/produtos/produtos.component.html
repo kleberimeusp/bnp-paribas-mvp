@@ -5,10 +5,17 @@
 <form (ngSubmit)="onSubmit()">
   <div class="form-row">
     <label>Código:</label>
-    <input type="text" [(ngModel)]="produto.codigo" name="codigo" [readonly]="editando" required />
+    <input type="text" [(ngModel)]="produto.codigoProduto" name="codigoProduto" [readonly]="editando" required />
 
     <label>Descrição:</label>
     <input type="text" [(ngModel)]="produto.descricao" name="descricao" required />
+
+    <label>Status:</label>
+    <select [(ngModel)]="produto.status" name="status" required>
+      <option value="" disabled>Selecione</option>
+      <option value="A">Ativo</option>
+      <option value="I">Inativo</option>
+    </select>
   </div>
 
   <div class="form-actions">
@@ -25,17 +32,20 @@
     <tr>
       <th>Código</th>
       <th>Descrição</th>
+      <th>Status</th>
       <th>Ações</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let p of produtos">
-      <td>{{ p.codigo }}</td>
+      <td>{{ p.codigoProduto }}</td>
       <td>{{ p.descricao }}</td>
+      <td>{{ p.status === 'A' ? 'Ativo' : 'Inativo' }}</td>
       <td>
         <button type="button" (click)="editar(p)" style="background-color: #006341; color: white; border: none; padding: 4px 10px; border-radius: 4px; margin-right: 4px;">Editar</button>
-        <button type="button" (click)="excluir(p.codigo)" style="background-color: #d9534f; color: white; border: none; padding: 4px 10px; border-radius: 4px;">Excluir</button>
+        <button type="button" (click)="excluir(p.codigoProduto)" style="background-color: #d9534f; color: white; border: none; padding: 4px 10px; border-radius: 4px;">Excluir</button>
       </td>
     </tr>
   </tbody>
 </table>
+

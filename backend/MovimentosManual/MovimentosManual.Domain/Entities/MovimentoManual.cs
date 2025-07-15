@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,10 +8,10 @@ namespace MovimentosManual.Domain.Entities
     public class MovimentoManual
     {
         [Column("DAT_MES")]
-        public decimal Mes { get; set; }  // Corrigido: de int para decimal
+        public int Mes { get; set; }  // Corrigido: de int para decimal
 
         [Column("DAT_ANO")]
-        public decimal Ano { get; set; }  // Corrigido: de int para decimal
+        public int Ano { get; set; }  // Corrigido: de int para decimal
 
         [Key]
         [Column("NUM_LANCAMENTO", TypeName = "numeric(18,0)")]

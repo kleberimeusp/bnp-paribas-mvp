@@ -4,9 +4,8 @@ using MovimentosManual.Domain.Entities;
 
 namespace MovimentosManual.Api.Controllers
 {
-
     [ApiController]
-    [Route("api/movimentos")]
+    [Route("api/[controller]")]
     public class MovimentoController : ControllerBase
     {
         private readonly MovimentoService _service;
@@ -16,6 +15,9 @@ namespace MovimentosManual.Api.Controllers
             _service = service;
         }
 
+        /// <summary>
+        /// Lista todos os movimentos manuais.
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> GetTodos()
         {
@@ -23,24 +25,32 @@ namespace MovimentosManual.Api.Controllers
             return Ok(lista);
         }
 
+        /// <summary>
+        /// Lista movimentos por mês e ano.
+        /// </summary>
         [HttpGet("por-data")]
         public async Task<IActionResult> GetPorData([FromQuery] int mes, [FromQuery] int ano)
         {
-            if (mes < 1 || mes > 12 || ano < 1900)
+            if (mes is < 1 or > 12 || ano < 1900)
                 return BadRequest("Mês ou ano inválido.");
 
             var lista = await _service.ListarPorMesAno(mes, ano);
             return Ok(lista);
         }
 
+        /// <summary>
+        /// Obtém um movimento por número de lançamento.
+        /// </summary>
         [HttpGet("{numeroLancamento:long}")]
         public async Task<IActionResult> GetById(long numeroLancamento)
         {
             var mov = await _service.Obter(numeroLancamento);
-            if (mov == null) return NotFound();
-            return Ok(mov);
+            return mov is null ? NotFound() : Ok(mov);
         }
 
+        /// <summary>
+        /// Cria um novo movimento manual.
+        /// </summary>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] MovimentoManual movimento)
         {
@@ -48,9 +58,12 @@ namespace MovimentosManual.Api.Controllers
                 return BadRequest(ModelState);
 
             await _service.Incluir(movimento);
-            return Created(string.Empty, movimento);
+            return CreatedAtAction(nameof(GetById), new { numeroLancamento = movimento.NumeroLancamento }, movimento);
         }
 
+        /// <summary>
+        /// Atualiza um movimento manual existente.
+        /// </summary>
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] MovimentoManual movimento)
         {
@@ -61,11 +74,24 @@ namespace MovimentosManual.Api.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{numeroLancamento:long}")]
-        public async Task<IActionResult> Delete(long numeroLancamento)
+        /// <summary>
+        /// Remove um movimento por número de lançamento.
+        /// </summary>
+        [HttpDelete("por-lancamento/{numeroLancamento:long}")]
+        public async Task<IActionResult> DeletePorNumero(long numeroLancamento)
         {
             await _service.Remover(numeroLancamento);
             return NoContent();
         }
+
+        /// <summary>
+        /// Remove um movimento por produto e código COSIF.
+        /// </summary>
+        [HttpDelete("por-produto-cosif/{codigoProduto}/{codigoCosif}")]
+        public async Task<IActionResult> DeletePorProdutoCosif(string codigoProduto, string codigoCosif)
+        {
+            await _service.Remover(codigoProduto, codigoCosif);
+            return NoContent();
+        }
     }
-} 
+}

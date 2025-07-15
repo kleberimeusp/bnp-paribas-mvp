@@ -1,11 +1,12 @@
 export interface MovimentoManual {
   mes: number;
   ano: number;
+  numeroLancamento: number;
   codigoProduto: string;
   codigoCosif: string;
   descricao: string;
   valor: number;
-  numeroLancamento?: number;
-  dataMovimento?: Date;
-  codigoUsuario?: string;
+  dataMovimento?: string;
+  codigoUsuario: string;
+  produtoCosif: string;
 }

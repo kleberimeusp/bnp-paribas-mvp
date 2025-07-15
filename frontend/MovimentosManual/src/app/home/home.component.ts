@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.movimento.dataMovimento = new Date();
+    this.movimento.dataMovimento = new Date().toISOString();
     this.movimento.codigoUsuario = 'TESTE';
 
     if (this.editando && this.movimento.numeroLancamento) {
@@ -115,10 +115,15 @@ export class HomeComponent implements OnInit {
     return {
       mes: new Date().getMonth() + 1,
       ano: new Date().getFullYear(),
+      numeroLancamento: 0,
       codigoProduto: '',
       codigoCosif: '',
       descricao: '',
-      valor: 0
+      valor: 0,
+      dataMovimento: new Date().toISOString(),
+      codigoUsuario: '',
+      produtoCosif: ''
     };
+
   }
 }

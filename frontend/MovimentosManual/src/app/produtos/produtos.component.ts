@@ -19,7 +19,9 @@ export class ProdutosComponent implements OnInit {
   }
 
   listar(): void {
-    this.produtosService.listar().subscribe(data => this.produtos = data);
+    this.produtosService.listar().subscribe(data => 
+      this.produtos = data
+    );
   }
 
   onSubmit(): void {
@@ -37,9 +39,17 @@ export class ProdutosComponent implements OnInit {
     }
   }
 
-  editar(prod: Produto): void {
-    this.produto = { ...prod };
+
+
+  editar(p: Produto): void {
+    this.produto = {
+      codigoProduto: p.codigoProduto,
+      descricao: p.descricao,
+      status: p.status
+    };
     this.editando = true;
+
+    console.log(this.produto);
   }
 
   excluir(codigo: string): void {
@@ -63,8 +73,11 @@ export class ProdutosComponent implements OnInit {
 
   private novoProduto(): Produto {
     return {
-      codigo: '',
-      descricao: ''
+      codigoProduto: '',
+      descricao: '',
+      status: 'A', // valor default, por exemplo 'A' para Ativo (pode ser alterado conforme sua regra)
+      produtosCosif: []
     };
   }
+
 }

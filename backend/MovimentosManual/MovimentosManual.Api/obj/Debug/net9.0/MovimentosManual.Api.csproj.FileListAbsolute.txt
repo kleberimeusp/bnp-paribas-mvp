@@ -5,6 +5,8 @@ C:\Dev\_my-git\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\bin
 C:\Dev\_my-git\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\bin\Debug\net9.0\MovimentosManual.Api.runtimeconfig.json
 C:\Dev\_my-git\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\bin\Debug\net9.0\MovimentosManual.Api.dll
 C:\Dev\_my-git\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\bin\Debug\net9.0\MovimentosManual.Api.pdb
+C:\Dev\_my-git\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\bin\Debug\net9.0\AutoMapper.dll
+C:\Dev\_my-git\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\bin\Debug\net9.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Dev\_my-git\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\bin\Debug\net9.0\Azure.Core.dll
 C:\Dev\_my-git\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\bin\Debug\net9.0\Azure.Identity.dll
 C:\Dev\_my-git\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\bin\Debug\net9.0\Humanizer.dll

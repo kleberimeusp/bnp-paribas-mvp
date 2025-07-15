@@ -53,6 +53,26 @@ namespace MovimentosManual.Application.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task Remover(string codigoProduto, string codigoCosif)
+        {
+            bool temMovimentoRelacionado = await _context.MovimentosManuais
+                .AnyAsync(m => m.CodigoProduto == codigoProduto && m.CodigoCosif == codigoCosif);
+
+            if (temMovimentoRelacionado)
+                throw new InvalidOperationException("Não é possível excluir. Existem lançamentos manuais vinculados.");
+
+
+            var existente = await _context.MovimentosManuais
+                .FirstOrDefaultAsync(m => m.CodigoProduto == codigoProduto && m.CodigoCosif == codigoCosif);
+
+            if (existente == null)
+                throw new Exception("Movimento não encontrado.");
+
+            _context.MovimentosManuais.Remove(existente);
+            await _context.SaveChangesAsync();
+        }
+
+
         public async Task Remover(long numeroLancamento)
         {
             var existente = await _context.MovimentosManuais.FindAsync(numeroLancamento);
@@ -63,7 +83,8 @@ namespace MovimentosManual.Application.Services
             await _context.SaveChangesAsync();
         }
 
-        private async Task<long> GerarNumeroLancamento(decimal mes, decimal ano)
+
+        private async Task<long> GerarNumeroLancamento(int mes, int ano)
         {
             var max = await _context.MovimentosManuais
                         .Where(m => m.Mes == mes && m.Ano == ano)

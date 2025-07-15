@@ -20,10 +20,14 @@ export class ProdutosService {
   }
 
   atualizar(produto: Produto): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${produto.codigo}`, produto);
+    return this.http.put(`${this.baseUrl}/${produto.codigoProduto}`, produto);
   }
 
   remover(codigo: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${codigo}`);
+  }
+
+  find(codigoProduto: string): Observable<Produto[]> {
+    return this.http.get<Produto[]>(`${this.baseUrl}/${codigoProduto}`);
   }
 }

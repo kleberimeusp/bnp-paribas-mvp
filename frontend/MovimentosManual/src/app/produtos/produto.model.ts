@@ -1,4 +1,6 @@
 export interface Produto {
-  codigo: string;
+  codigoProduto: string;
   descricao: string;
+  status: string;
+  produtosCosif?: any[]; // ou ProdutoCosif[] se tiver interface definida
 }

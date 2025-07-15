@@ -30,6 +30,11 @@ export class MovimentosService {
     return this.http.delete(`${this.baseUrl}/movimentos/${numeroLancamento}`);
   }
 
+  removerProdutoCosif(codigoProduto: string, codigoCosif: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/movimentos/${codigoProduto}/${codigoCosif}`);
+  }
+  
+
   // ==================== PRODUTOS ====================
 
   listarProdutos(): Observable<any[]> {
