@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <!-- Referência a projetos da solução -->
+  <ItemGroup>
+    <ProjectReference Include="..\MovimentosManual.Api\MovimentosManual.Api.csproj" />
+    <ProjectReference Include="..\MovimentosManual.Application\MovimentosManual.Application.csproj" />
+    <ProjectReference Include="..\MovimentosManual.Infrastructure\MovimentosManual.Infrastructure.csproj" />
+    <ProjectReference Include="..\MovimentosManual.Domain\MovimentosManual.Domain.csproj" />
+    <ProjectReference Include="..\MovimentosManual.Core\MovimentosManual.Core.csproj" />
+  </ItemGroup>
+
+  <!-- Dependências para testes -->
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="FluentAssertions" Version="8.5.0" />
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.0" />
+    <PackageReference Include="Moq" Version="4.20.72" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
+  </ItemGroup>
+
+</Project>

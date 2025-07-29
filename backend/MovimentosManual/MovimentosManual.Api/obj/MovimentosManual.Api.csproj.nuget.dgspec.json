@@ -1,46 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Api\\MovimentosManual.Api.csproj": {}
+    "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Api\\MovimentosManual.Api.csproj": {}
   },
   "projects": {
-    "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Api\\MovimentosManual.Api.csproj": {
+    "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Api\\MovimentosManual.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Api\\MovimentosManual.Api.csproj",
+        "projectUniqueName": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Api\\MovimentosManual.Api.csproj",
         "projectName": "MovimentosManual.Api",
-        "projectPath": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Api\\MovimentosManual.Api.csproj",
-        "packagesPath": "C:\\Users\\jaugu\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Api\\obj\\",
+        "projectPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Api\\MovimentosManual.Api.csproj",
+        "packagesPath": "C:\\Users\\Capgemini\\.nuget\\packages\\",
+        "outputPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Api\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\jaugu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Capgemini\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net9.0"
+          "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net9.0": {
-            "targetAlias": "net9.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Application\\MovimentosManual.Application.csproj": {
-                "projectPath": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Application\\MovimentosManual.Application.csproj"
+              "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Application\\MovimentosManual.Application.csproj": {
+                "projectPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Application\\MovimentosManual.Application.csproj"
               },
-              "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\MovimentosManual.Domain.csproj": {
-                "projectPath": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\MovimentosManual.Domain.csproj"
-              },
-              "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Infrastructure\\MovimentosManual.Infrastructure.csproj": {
-                "projectPath": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Infrastructure\\MovimentosManual.Infrastructure.csproj"
+              "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Core\\MovimentosManual.Core.csproj": {
+                "projectPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Core\\MovimentosManual.Core.csproj"
               }
             }
           }
@@ -54,30 +44,45 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.300"
+        }
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.AspNetCore.OpenApi": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
-              "version": "[9.0.1, )"
+              "version": "[12.0.1, )"
             },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
+            "FluentValidation": {
               "target": "Package",
-              "version": "[9.0.6, )"
+              "version": "[12.0.0, )"
             },
-            "Microsoft.EntityFrameworkCore.Tools": {
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.3.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.6, )"
+              "version": "[9.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.7, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[6.5.0, )"
             }
           },
           "imports": [
@@ -99,44 +104,40 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.412/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Application\\MovimentosManual.Application.csproj": {
+    "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Application\\MovimentosManual.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Application\\MovimentosManual.Application.csproj",
+        "projectUniqueName": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Application\\MovimentosManual.Application.csproj",
         "projectName": "MovimentosManual.Application",
-        "projectPath": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Application\\MovimentosManual.Application.csproj",
-        "packagesPath": "C:\\Users\\jaugu\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Application\\obj\\",
+        "projectPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Application\\MovimentosManual.Application.csproj",
+        "packagesPath": "C:\\Users\\Capgemini\\.nuget\\packages\\",
+        "outputPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Application\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\jaugu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Capgemini\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net9.0"
+          "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net9.0": {
-            "targetAlias": "net9.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\MovimentosManual.Domain.csproj": {
-                "projectPath": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\MovimentosManual.Domain.csproj"
+              "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Core\\MovimentosManual.Core.csproj": {
+                "projectPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Core\\MovimentosManual.Core.csproj"
               },
-              "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Infrastructure\\MovimentosManual.Infrastructure.csproj": {
-                "projectPath": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Infrastructure\\MovimentosManual.Infrastructure.csproj"
+              "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\MovimentosManual.Domain.csproj": {
+                "projectPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\MovimentosManual.Domain.csproj"
+              },
+              "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Infrastructure\\MovimentosManual.Infrastructure.csproj": {
+                "projectPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Infrastructure\\MovimentosManual.Infrastructure.csproj"
               }
             }
           }
@@ -150,20 +151,23 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.300"
+        }
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[15.0.1, )"
-            },
-            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
-              "target": "Package",
               "version": "[12.0.1, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[12.0.0, )"
             }
           },
           "imports": [
@@ -182,38 +186,31 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.412/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\MovimentosManual.Domain.csproj": {
+    "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Core\\MovimentosManual.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\MovimentosManual.Domain.csproj",
-        "projectName": "MovimentosManual.Domain",
-        "projectPath": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\MovimentosManual.Domain.csproj",
-        "packagesPath": "C:\\Users\\jaugu\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\obj\\",
+        "projectUniqueName": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Core\\MovimentosManual.Core.csproj",
+        "projectName": "MovimentosManual.Core",
+        "projectPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Core\\MovimentosManual.Core.csproj",
+        "packagesPath": "C:\\Users\\Capgemini\\.nuget\\packages\\",
+        "outputPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Core\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\jaugu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Capgemini\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net9.0"
+          "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net9.0": {
-            "targetAlias": "net9.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -226,12 +223,11 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.300"
+        }
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "imports": [
             "net461",
             "net462",
@@ -248,41 +244,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.412/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Infrastructure\\MovimentosManual.Infrastructure.csproj": {
+    "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\MovimentosManual.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Infrastructure\\MovimentosManual.Infrastructure.csproj",
-        "projectName": "MovimentosManual.Infrastructure",
-        "projectPath": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Infrastructure\\MovimentosManual.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\jaugu\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Infrastructure\\obj\\",
+        "projectUniqueName": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\MovimentosManual.Domain.csproj",
+        "projectName": "MovimentosManual.Domain",
+        "projectPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\MovimentosManual.Domain.csproj",
+        "packagesPath": "C:\\Users\\Capgemini\\.nuget\\packages\\",
+        "outputPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\jaugu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Capgemini\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net9.0"
+          "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net9.0": {
-            "targetAlias": "net9.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\MovimentosManual.Domain.csproj": {
-                "projectPath": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\MovimentosManual.Domain.csproj"
+              "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Core\\MovimentosManual.Core.csproj": {
+                "projectPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Core\\MovimentosManual.Core.csproj"
               }
             }
           }
@@ -296,22 +285,111 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.300"
+        }
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.412/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Infrastructure\\MovimentosManual.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Infrastructure\\MovimentosManual.Infrastructure.csproj",
+        "projectName": "MovimentosManual.Infrastructure",
+        "projectPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Infrastructure\\MovimentosManual.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Capgemini\\.nuget\\packages\\",
+        "outputPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Capgemini\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Core\\MovimentosManual.Core.csproj": {
+                "projectPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Core\\MovimentosManual.Core.csproj"
+              },
+              "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\MovimentosManual.Domain.csproj": {
+                "projectPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\MovimentosManual.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore.SqlServer": {
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.6, )"
+              "version": "[9.0.7, )"
             },
-            "Microsoft.EntityFrameworkCore.Tools": {
+            "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.6, )"
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[9.0.7, )"
+            },
+            "Microsoft.Extensions.Configuration.FileExtensions": {
+              "target": "Package",
+              "version": "[9.0.7, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[9.0.7, )"
+            },
+            "Microsoft.Extensions.FileProviders.Physical": {
+              "target": "Package",
+              "version": "[9.0.7, )"
             }
           },
           "imports": [
@@ -330,7 +408,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.412/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,0 +1,8 @@
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\obj\Release\net8.0\MovimentosManual.Api.csproj.AssemblyReference.cache
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\obj\Release\net8.0\MovimentosManual.Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\obj\Release\net8.0\MovimentosManual.Api.AssemblyInfoInputs.cache
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\obj\Release\net8.0\MovimentosManual.Api.AssemblyInfo.cs
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\obj\Release\net8.0\MovimentosManual.Api.csproj.CoreCompileInputs.cache
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\obj\Release\net8.0\MovimentosManual.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\obj\Release\net8.0\MovimentosManual.Api.MvcApplicationPartsAssemblyInfo.cache
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\obj\Release\net8.0\MovimentosManual.Api.sourcelink.json

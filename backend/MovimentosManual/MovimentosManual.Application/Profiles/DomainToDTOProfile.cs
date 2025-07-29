@@ -1,5 +1,5 @@
 using AutoMapper;
-using MovimentosManual.Application.DTOs;
+using MovimentosManual.Application.Models.Response;
 using MovimentosManual.Domain.Entities;
 
 namespace MovimentosManual.Application.Profiles
@@ -8,9 +8,9 @@ namespace MovimentosManual.Application.Profiles
     {
         public DomainToDTOProfile()
         {
-            CreateMap<Produto, ProdutoDTO>().ReverseMap();
-            CreateMap<ProdutoCosif, ProdutoCosifDTO>().ReverseMap();
-            CreateMap<MovimentoManual, MovimentoManualDTO>().ReverseMap();
+            CreateMap<Produto, ProdutoResponse>();
+            CreateMap<ProdutoCosif, ProdutoCosifResponse>();
+            CreateMap<MovimentoManual, MovimentoManualResponse>();
         }
     }
 }

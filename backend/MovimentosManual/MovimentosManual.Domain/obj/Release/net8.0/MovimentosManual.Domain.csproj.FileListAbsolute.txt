@@ -1,0 +1,16 @@
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Domain\bin\Release\net8.0\MovimentosManual.Domain.deps.json
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Domain\bin\Release\net8.0\MovimentosManual.Domain.dll
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Domain\bin\Release\net8.0\MovimentosManual.Domain.pdb
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Domain\bin\Release\net8.0\MovimentosManual.Core.dll
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Domain\bin\Release\net8.0\MovimentosManual.Core.pdb
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Domain\obj\Release\net8.0\MovimentosManual.Domain.csproj.AssemblyReference.cache
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Domain\obj\Release\net8.0\MovimentosManual.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Domain\obj\Release\net8.0\MovimentosManual.Domain.AssemblyInfoInputs.cache
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Domain\obj\Release\net8.0\MovimentosManual.Domain.AssemblyInfo.cs
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Domain\obj\Release\net8.0\MovimentosManual.Domain.csproj.CoreCompileInputs.cache
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Domain\obj\Release\net8.0\MovimentosManual.Domain.sourcelink.json
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Domain\obj\Release\net8.0\Moviment.25795CE7.Up2Date
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Domain\obj\Release\net8.0\MovimentosManual.Domain.dll
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Domain\obj\Release\net8.0\refint\MovimentosManual.Domain.dll
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Domain\obj\Release\net8.0\MovimentosManual.Domain.pdb
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Domain\obj\Release\net8.0\ref\MovimentosManual.Domain.dll

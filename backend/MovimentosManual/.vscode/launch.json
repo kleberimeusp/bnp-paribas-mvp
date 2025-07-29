@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Executar API (localhost:5000)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/MovimentosManual.Api/bin/Debug/net8.0/MovimentosManual.Api.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/MovimentosManual.Api",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ConnectionStrings__DefaultConnection": "Server=localhost,1434;Database=MovimentosDB;User Id=sa;Password=SuaSenhaForteAqui123!;TrustServerCertificate=True;Encrypt=False"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      }
+    }
+  ]
+}

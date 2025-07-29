@@ -9,18 +9,18 @@ namespace MovimentosManual.Domain.Entities
     {
         [Key]
         [Column("COD_PRODUTO")]
-        [StringLength(20)] // ajustar conforme tamanho real no banco
+        [StringLength(20)]
         public string CodigoProduto { get; set; } = string.Empty;
 
         [Column("DES_PRODUTO")]
-        [StringLength(100)] // ajustar conforme tamanho real no banco
+        [StringLength(100)]
         public string Descricao { get; set; } = string.Empty;
 
         [Column("STA_STATUS")]
-        [StringLength(1)] // geralmente 'A' ou 'I'
+        [StringLength(1)]
         public string Status { get; set; } = string.Empty;
 
-        // Relacionamento com ProdutoCosif (1:N)
         public ICollection<ProdutoCosif> ProdutosCosif { get; set; } = new List<ProdutoCosif>();
+        public ICollection<MovimentoManual> Movimentos { get; set; } = new List<MovimentoManual>();
     }
 }

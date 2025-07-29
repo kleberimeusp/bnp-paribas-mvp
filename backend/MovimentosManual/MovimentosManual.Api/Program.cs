@@ -1,96 +1,102 @@
-using MovimentosManual.Infrastructure.Context;
-using MovimentosManual.Application.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
-using System.Text.Json.Serialization;
-using AutoMapper;
-using System.Text.Json;
+using Microsoft.Data.SqlClient;
+using MovimentosManual.Infrastructure.Context;
+using MovimentosManual.Core.Interfaces;
+using MovimentosManual.Application.Services;
+using MovimentosManual.Infrastructure.Repositories;
+using MovimentosManual.Api.Mappings;
+using MovimentosManual.Infrastructure.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ===================== Configurações de Serviços =====================
+// -----------------------------
+// CONFIGURAÇÕES
+// -----------------------------
 
-// Controllers com opções JSON (camelCase + ignora ciclos)
-builder.Services.AddControllers()
-    .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-    });
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                     .AddEnvironmentVariables();
 
-// Conexão com SQL Server com retry automático
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+// Logging
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
+// Strings de conexão
+var localConn = builder.Configuration.GetConnectionString("LocalhostConnection");
+var dockerConn = builder.Configuration.GetConnectionString("DockerConnection");
+string? finalConnectionString = null;
+
+// Testar conexões
+if (SqlConnectionTester.Test(localConn))
+{
+    finalConnectionString = localConn;
+    Console.WriteLine("✅ Usando conexão LOCALHOST");
+}
+else if (SqlConnectionTester.Test(dockerConn))
+{
+    finalConnectionString = dockerConn;
+    Console.WriteLine("✅ Usando conexão SQLSERVER DOCKER");
+}
+else
+{
+    Console.WriteLine("❌ Falha ao conectar ao banco de dados.");
+    throw new Exception("Conexão SQL falhou.");
+}
+
+// -----------------------------
+// REGISTROS DE DEPENDÊNCIA
+// -----------------------------
+
 builder.Services.AddDbContext<MovimentosDbContext>(options =>
-    options.UseSqlServer(connectionString, sql => sql.EnableRetryOnFailure(6)));
-
-// Injeção de dependência dos serviços
-builder.Services.AddScoped<MovimentoService>();
-builder.Services.AddScoped<ProdutoService>();
-builder.Services.AddScoped<ProdutoCosifService>();
-
-// AutoMapper
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-// CORS liberado para frontend (Angular, etc.)
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowFrontend", policy =>
+    options.UseSqlServer(finalConnectionString, sqlOptions =>
     {
-        policy.WithOrigins("http://localhost:4200")
-              .AllowAnyHeader()
-              .AllowAnyMethod();
-    });
-});
+        sqlOptions.EnableRetryOnFailure(5);
+        sqlOptions.CommandTimeout(60);
+    }));
 
-// Swagger para documentação da API
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<IProdutoService, ProdutoService>();
+builder.Services.AddScoped<IProdutoCosifService, ProdutoCosifService>();
+builder.Services.AddScoped<ICosifService, CosifService>();
+builder.Services.AddScoped<IMovimentoManualService, MovimentoManualService>();
+
+builder.Services.AddAutoMapper(typeof(MovimentoManualProfile));
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "MovimentosManual API", Version = "v1" });
-});
+builder.Services.AddSwaggerGen();
+
+// -----------------------------
+// CONSTRUÇÃO DO APP
+// -----------------------------
 
 var app = builder.Build();
 
-// ===================== Pipeline da Aplicação =====================
-
-// Detecta se está rodando em container Docker
-var isDocker = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
-if (isDocker)
-{
-    app.Urls.Add("http://+:80");
-}
-
-// Aplica migrations com tratamento de exceção
-using (var scope = app.Services.CreateScope())
+// Middleware de erro SQL amigável
+app.Use(async (context, next) =>
 {
     try
     {
-        var context = scope.ServiceProvider.GetRequiredService<MovimentosDbContext>();
-        context.Database.Migrate();
+        await next();
     }
-    catch (Exception ex)
+    catch (SqlException ex)
     {
-        Console.WriteLine($"⚠️ Erro ao aplicar migrations: {ex.Message}");
-        // Swagger continuará funcionando mesmo que o banco esteja indisponível
+        context.Response.StatusCode = 500;
+        await context.Response.WriteAsync("❌ Erro ao acessar o banco de dados.");
+        Console.WriteLine($"[SQL ERROR] {ex.Message}");
     }
-}
-
-// Middleware de CORS
-app.UseCors("AllowFrontend");
-
-// Swagger na raiz do site (http://localhost:5000)
-app.UseSwagger();
-app.UseSwaggerUI(c =>
-{
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "MovimentosManual API v1");
-    c.RoutePrefix = string.Empty; // Mostra o Swagger na raiz
 });
 
+// Swagger e DevTools
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "MovimentosManual API v1");
+        options.RoutePrefix = string.Empty;
+    });
+}
 
-// Authorization (pode ser comentado se não estiver usando autenticação)
+app.UseHttpsRedirection();
 app.UseAuthorization();
-
-// Mapeamento de endpoints
 app.MapControllers();
-
 app.Run();

@@ -1,0 +1,12 @@
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Core\bin\Release\net8.0\MovimentosManual.Core.deps.json
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Core\bin\Release\net8.0\MovimentosManual.Core.dll
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Core\bin\Release\net8.0\MovimentosManual.Core.pdb
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Core\obj\Release\net8.0\MovimentosManual.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Core\obj\Release\net8.0\MovimentosManual.Core.AssemblyInfoInputs.cache
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Core\obj\Release\net8.0\MovimentosManual.Core.AssemblyInfo.cs
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Core\obj\Release\net8.0\MovimentosManual.Core.csproj.CoreCompileInputs.cache
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Core\obj\Release\net8.0\MovimentosManual.Core.sourcelink.json
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Core\obj\Release\net8.0\MovimentosManual.Core.dll
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Core\obj\Release\net8.0\refint\MovimentosManual.Core.dll
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Core\obj\Release\net8.0\MovimentosManual.Core.pdb
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Core\obj\Release\net8.0\ref\MovimentosManual.Core.dll

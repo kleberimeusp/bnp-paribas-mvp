@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovimentosManual.Applicatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovimentosManual.Infrastructure", "MovimentosManual.Infrastructure\MovimentosManual.Infrastructure.csproj", "{9056ADFA-A32A-4E7A-84EE-D9CCBF1C2579}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovimentosManual.Core", "MovimentosManual.Core\MovimentosManual.Core.csproj", "{8BE0566B-DC22-44D9-8215-4EADEEC186F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{9056ADFA-A32A-4E7A-84EE-D9CCBF1C2579}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9056ADFA-A32A-4E7A-84EE-D9CCBF1C2579}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9056ADFA-A32A-4E7A-84EE-D9CCBF1C2579}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BE0566B-DC22-44D9-8215-4EADEEC186F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BE0566B-DC22-44D9-8215-4EADEEC186F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BE0566B-DC22-44D9-8215-4EADEEC186F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BE0566B-DC22-44D9-8215-4EADEEC186F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

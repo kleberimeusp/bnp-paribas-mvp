@@ -1,85 +1,157 @@
 using MovimentosManual.Domain.Entities;
-using MovimentosManual.Infrastructure.Context;
+using MovimentosManual.Core.Interfaces;
+using MovimentosManual.Core.Common;
+using MovimentosManual.Core.Pagination;
 using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
+using MovimentosManual.Infrastructure.Common.Linq;
+using MovimentosManual.Application.Models.Filter;
 
 namespace MovimentosManual.Application.Services
 {
-    public class ProdutoCosifService
+    public class ProdutoCosifService : IProdutoCosifService
     {
-        private readonly MovimentosDbContext _context;
+        private readonly IRepository<ProdutoCosif> _repository;
 
-        public ProdutoCosifService(MovimentosDbContext context)
+        public ProdutoCosifService(IRepository<ProdutoCosif> repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
-        /// <summary>
-        /// Lista todos os produtos COSIF cadastrados.
-        /// </summary>
-        public async Task<List<ProdutoCosif>> ListarTodos()
+        public async Task<IEnumerable<ProdutoCosif>> ListarTodos()
         {
-            return await _context.ProdutosCosif.ToListAsync();
+            return await _repository.ListarTodos();
         }
 
-        /// <summary>
-        /// Retorna um produto COSIF com base na chave composta.
-        /// </summary>
-        public async Task<ProdutoCosif?> Obter(string codigoProduto, string codigoCosif)
+        public async Task<ProdutoCosif?> ObterPorId(int id)
         {
-            return await _context.ProdutosCosif.FindAsync(codigoProduto, codigoCosif);
+            return await _repository.ObterPorId(id);
         }
 
-        /// <summary>
-        /// Adiciona um novo produto COSIF ao banco de dados.
-        /// </summary>
-        public async Task Incluir(ProdutoCosif produtoCosif)
+        public Task<ProdutoCosif?> Obter(Func<ProdutoCosif, bool> predicate)
         {
-            Validator.ValidateObject(produtoCosif, new ValidationContext(produtoCosif), validateAllProperties: true);
-
-            // Verifica duplicidade
-            var existente = await Obter(produtoCosif.CodigoProduto, produtoCosif.CodigoCosif);
-            if (existente != null)
-                throw new InvalidOperationException("Já existe um ProdutoCosif com os códigos informados.");
-
-            _context.ProdutosCosif.Add(produtoCosif);
-            await _context.SaveChangesAsync();
+            return Task.FromResult(_repository.Query().FirstOrDefault(predicate));
         }
 
-        /// <summary>
-        /// Atualiza os dados de um produto COSIF existente.
-        /// </summary>
-        public async Task Atualizar(ProdutoCosif produtoCosif)
+        public async Task Incluir(ProdutoCosif entidade)
         {
-            Validator.ValidateObject(produtoCosif, new ValidationContext(produtoCosif), validateAllProperties: true);
-
-            var existente = await Obter(produtoCosif.CodigoProduto, produtoCosif.CodigoCosif);
-            if (existente == null)
-                throw new InvalidOperationException("ProdutoCosif não encontrado.");
-
-            existente.CodigoClassificacao = produtoCosif.CodigoClassificacao;
-            existente.Status = produtoCosif.Status;
-
-            await _context.SaveChangesAsync();
+            await _repository.Incluir(entidade);
         }
 
-        /// <summary>
-        /// Remove um produto COSIF, se não houver dependências em lançamentos manuais.
-        /// </summary>
+        public async Task Atualizar(ProdutoCosif entidade)
+        {
+            await _repository.Atualizar(entidade);
+        }
+
+        public async Task Remover(int id)
+        {
+            var entidade = await _repository.ObterPorId(id);
+            if (entidade != null)
+                await _repository.Remover(entidade);
+        }
+
+        public async Task<ProdutoCosif?> ObterPorChave(string codigoProduto, string codigoCosif)
+        {
+            return await _repository.Query()
+                                     .FirstOrDefaultAsync(pc => pc.CodigoProduto == codigoProduto && pc.CodigoCosif == codigoCosif);
+        }
+
         public async Task Remover(string codigoProduto, string codigoCosif)
         {
-            var existeMovimento = await _context.MovimentosManuais
-                .AnyAsync(m => m.CodigoProduto == codigoProduto && m.CodigoCosif == codigoCosif);
-
-            if (existeMovimento)
-                throw new InvalidOperationException("Não é possível excluir. Existem lançamentos manuais vinculados a este ProdutoCosif.");
-
-            var existente = await Obter(codigoProduto, codigoCosif);
-            if (existente == null)
-                throw new InvalidOperationException("ProdutoCosif não encontrado.");
-
-            _context.ProdutosCosif.Remove(existente);
-            await _context.SaveChangesAsync();
+            var entidade = await ObterPorChave(codigoProduto, codigoCosif);
+            if (entidade != null)
+                await _repository.Remover(entidade);
         }
+
+        public async Task<PagedResult<ProdutoCosif>> BuscarPaginado(PagedQuery<ProdutoCosif> query)
+        {
+            var baseQuery = _repository.Query();
+
+            if (query.Filter != null)
+                baseQuery = baseQuery.Where(query.Filter);
+
+            if (query.Filters != null)
+                baseQuery = query.Filters(baseQuery);
+
+            if (query.Orderings != null && query.Orderings.Any())
+            {
+                IOrderedQueryable<ProdutoCosif>? orderedQuery = null;
+                for (int i = 0; i < query.Orderings.Count; i++)
+                {
+                    var order = query.Orderings[i];
+                    if (i == 0)
+                    {
+                        orderedQuery = order.Descending
+                            ? baseQuery.OrderByDescending(order.Expression)
+                            : baseQuery.OrderBy(order.Expression);
+                    }
+                    else if (orderedQuery != null)
+                    {
+                        orderedQuery = order.Descending
+                            ? orderedQuery.ThenByDescending(order.Expression)
+                            : orderedQuery.ThenBy(order.Expression);
+                    }
+                }
+                baseQuery = orderedQuery ?? baseQuery;
+            }
+
+            var total = await baseQuery.CountAsync();
+            var items = await baseQuery.Skip((query.Page - 1) * query.PageSize)
+                                       .Take(query.PageSize)
+                                       .ToListAsync();
+
+            return new PagedResult<ProdutoCosif>
+            {
+                Items = items,
+                TotalItems = total,
+                Page = query.Page,
+                PageSize = query.PageSize
+            };
+        }
+
+        public async Task<PagedResult<ProdutoCosif>> GetPagedAsync(PagedQuery<ProdutoCosif> query)
+        {
+            return await BuscarPaginado(query);
+        }
+
+        public async Task<PagedResult<ProdutoCosif>> GetPagedAsync(PagedRequestWithSort<ProdutoCosifFilter> request)
+        {
+            var source = _repository.Query();
+            var filtro = PredicateBuilder.True<ProdutoCosif>();
+
+            if (request.Filters != null)
+            {
+                if (!string.IsNullOrWhiteSpace(request.Filters.CodigoProduto))
+                    filtro = filtro.And(c => c.CodigoProduto.Contains(request.Filters.CodigoProduto));
+
+                if (!string.IsNullOrWhiteSpace(request.Filters.CodigoCosif))
+                    filtro = filtro.And(c => c.CodigoCosif.Contains(request.Filters.CodigoCosif));
+
+                if (!string.IsNullOrWhiteSpace(request.Filters.Status))
+                    filtro = filtro.And(c => c.Status == request.Filters.Status);
+            }
+
+            source = source.Where(filtro);
+
+            if (!string.IsNullOrWhiteSpace(request.OrderBy))
+            {
+                source = request.Descending
+                    ? source.OrderByDescending(x => EF.Property<object>(x, request.OrderBy))
+                    : source.OrderBy(x => EF.Property<object>(x, request.OrderBy));
+            }
+
+            return PagedResult<ProdutoCosif>.Create(source, request.Page, request.PageSize);
+        }
+
+        public Task<ProdutoCosif?> Obter(string produtoId, string cosifId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<PagedResult<ProdutoCosif>> GetPagedAsync(PagedRequestWithSort<ProdutoCosif> request)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

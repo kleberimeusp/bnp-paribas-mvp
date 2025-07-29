@@ -1,45 +1,60 @@
 {
   "version": 3,
   "targets": {
-    "net9.0": {}
+    "net8.0": {
+      "MovimentosManual.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/MovimentosManual.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MovimentosManual.Core.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "MovimentosManual.Core/1.0.0": {
+      "type": "project",
+      "path": "../MovimentosManual.Core/MovimentosManual.Core.csproj",
+      "msbuildProject": "../MovimentosManual.Core/MovimentosManual.Core.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net9.0": []
+    "net8.0": [
+      "MovimentosManual.Core >= 1.0.0"
+    ]
   },
   "packageFolders": {
-    "C:\\Users\\jaugu\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Capgemini\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\MovimentosManual.Domain.csproj",
+      "projectUniqueName": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\MovimentosManual.Domain.csproj",
       "projectName": "MovimentosManual.Domain",
-      "projectPath": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\MovimentosManual.Domain.csproj",
-      "packagesPath": "C:\\Users\\jaugu\\.nuget\\packages\\",
-      "outputPath": "C:\\Dev\\_my-git\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\obj\\",
+      "projectPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\MovimentosManual.Domain.csproj",
+      "packagesPath": "C:\\Users\\Capgemini\\.nuget\\packages\\",
+      "outputPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Domain\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\jaugu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Capgemini\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "net9.0"
+        "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
-          "projectReferences": {}
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "projectReferences": {
+            "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Core\\MovimentosManual.Core.csproj": {
+              "projectPath": "C:\\Dev-Cap\\bnp-paribas-mvp\\backend\\MovimentosManual\\MovimentosManual.Core\\MovimentosManual.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -51,12 +66,11 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.300"
+      }
     },
     "frameworks": {
-      "net9.0": {
-        "targetAlias": "net9.0",
+      "net8.0": {
+        "targetAlias": "net8.0",
         "imports": [
           "net461",
           "net462",
@@ -73,7 +87,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.412/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

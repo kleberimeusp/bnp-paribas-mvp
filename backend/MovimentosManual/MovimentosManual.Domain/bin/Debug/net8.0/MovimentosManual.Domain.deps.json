@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "MovimentosManual.Domain/1.0.0": {
+        "dependencies": {
+          "MovimentosManual.Core": "1.0.0"
+        },
+        "runtime": {
+          "MovimentosManual.Domain.dll": {}
+        }
+      },
+      "MovimentosManual.Core/1.0.0": {
+        "runtime": {
+          "MovimentosManual.Core.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MovimentosManual.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MovimentosManual.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
