@@ -13,6 +13,7 @@ namespace MovimentosManual.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Produces("application/json")]
     public class ProdutoController : ControllerBase
     {
         private readonly IProdutoService _service;
@@ -24,23 +25,42 @@ namespace MovimentosManual.Api.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Retorna todos os produtos cadastrados.
+        /// </summary>
+        /// <returns>Lista de produtos.</returns>
         [HttpGet]
+        [ProducesResponseType(typeof(List<ProdutoResponse>), 200)]
         public async Task<ActionResult<List<ProdutoResponse>>> GetAll()
         {
             var produtos = await _service.ListarTodos();
             return Ok(_mapper.Map<List<ProdutoResponse>>(produtos));
         }
 
+        /// <summary>
+        /// Retorna um produto pelo código.
+        /// </summary>
+        /// <param name="codigo">Código do produto</param>
+        /// <returns>Produto encontrado ou 404.</returns>
         [HttpGet("{codigo}")]
+        [ProducesResponseType(typeof(ProdutoResponse), 200)]
+        [ProducesResponseType(404)]
         public async Task<ActionResult<ProdutoResponse>> GetByCodigo(string codigo)
         {
             var produto = await _service.Obter(codigo);
             return produto is null ? NotFound() : Ok(_mapper.Map<ProdutoResponse>(produto));
         }
 
-
-
+        /// <summary>
+        /// Cria um novo produto.
+        /// </summary>
+        /// <param name="request">Dados do produto</param>
+        /// <returns>Produto criado ou erro de validação/duplicação.</returns>
         [HttpPost]
+        [ProducesResponseType(typeof(Produto), 201)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(409)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> Post([FromBody] ProdutoRequest request)
         {
             if (request == null)
@@ -62,7 +82,6 @@ namespace MovimentosManual.Api.Controllers
             if (string.IsNullOrWhiteSpace(status))
                 return BadRequest("Status do produto é obrigatório.");
 
-            // Verifica duplicidade com base no código
             var existente = await _service.Obter(codigo);
             if (existente != null)
                 return Conflict($"Produto já existente com o código '{codigo}'.");
@@ -92,7 +111,17 @@ namespace MovimentosManual.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Atualiza um produto existente.
+        /// </summary>
+        /// <param name="codigo">Código do produto</param>
+        /// <param name="request">Dados atualizados</param>
+        /// <returns>NoContent em caso de sucesso, ou erro de validação.</returns>
         [HttpPut("{codigo}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> Put(string codigo, [FromBody] ProdutoRequest request)
         {
             if (string.IsNullOrWhiteSpace(codigo))
@@ -112,14 +141,13 @@ namespace MovimentosManual.Api.Controllers
             if (existente == null)
                 return NotFound($"Produto com código '{codigo}' não encontrado.");
 
-            // Atualiza os campos
             existente.Descricao = request.Descricao?.Trim();
             existente.Status = request.Status?.Trim().ToUpper();
 
             try
             {
                 await _service.Atualizar(existente);
-                return NoContent(); // 204 atualizado com sucesso
+                return NoContent();
             }
             catch (DbUpdateException dbEx)
             {
@@ -133,14 +161,29 @@ namespace MovimentosManual.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Remove um produto pelo código.
+        /// </summary>
+        /// <param name="codigo">Código do produto</param>
+        /// <returns>NoContent em caso de sucesso.</returns>
         [HttpDelete("{codigo}")]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> Delete(string codigo)
         {
             await _service.Remover(codigo);
             return NoContent();
         }
 
+        /// <summary>
+        /// Retorna uma lista paginada de produtos com filtros opcionais por descrição e status.
+        /// </summary>
+        /// <param name="descricao">Filtro por descrição</param>
+        /// <param name="status">Filtro por status</param>
+        /// <param name="page">Página atual</param>
+        /// <param name="pageSize">Tamanho da página</param>
+        /// <returns>Página de produtos filtrados.</returns>
         [HttpGet("paged")]
+        [ProducesResponseType(typeof(PagedResult<ProdutoResponse>), 200)]
         public async Task<IActionResult> GetPaginado(
             [FromQuery] string? descricao,
             [FromQuery] string? status,
@@ -170,8 +213,5 @@ namespace MovimentosManual.Api.Controllers
                 Items = _mapper.Map<List<ProdutoResponse>>(resultado.Items)
             });
         }
-
-
-        
     }
 }

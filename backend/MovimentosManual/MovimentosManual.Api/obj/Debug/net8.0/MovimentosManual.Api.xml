@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MovimentosManual.Api</name>
+    </assembly>
+    <members>
+        <member name="M:MovimentosManual.Api.Controllers.CosifController.GetAll">
+            <summary>
+            Retorna todos os registros Cosif.
+            </summary>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.CosifController.GetByCodigo(System.String)">
+            <summary>
+            Retorna um registro Cosif por código.
+            </summary>
+            <param name="codigo">Código Cosif</param>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.CosifController.GetPaged(MovimentosManual.Core.Pagination.PagedRequestWithSort{MovimentosManual.Application.Models.Filter.CosifFilter})">
+            <summary>
+            Retorna uma lista paginada de registros Cosif com filtros e ordenação.
+            </summary>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.CosifController.Post(MovimentosManual.Application.Models.Request.CosifRequest)">
+            <summary>
+            Cria um novo registro Cosif.
+            </summary>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.CosifController.Put(System.String,MovimentosManual.Application.Models.Request.CosifRequest)">
+            <summary>
+            Atualiza um registro Cosif existente.
+            </summary>
+            <param name="codigo">Código Cosif</param>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.CosifController.Delete(System.String)">
+            <summary>
+            Remove um registro Cosif pelo código.
+            </summary>
+            <param name="codigo">Código Cosif</param>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.MovimentoManualController.GetAll">
+            <summary>
+            Lista todos os lançamentos manuais.
+            </summary>
+            <returns>Lista de lançamentos manuais.</returns>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.MovimentoManualController.GetById(System.Int32,System.Int32,System.Int64)">
+            <summary>
+            Consulta um lançamento manual por chave composta (mês, ano e número).
+            </summary>
+            <param name="mes">Mês do lançamento</param>
+            <param name="ano">Ano do lançamento</param>
+            <param name="numero">Número do lançamento</param>
+            <returns>Dados do lançamento encontrado.</returns>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.MovimentoManualController.GetPaged(MovimentosManual.Core.Pagination.PagedRequestWithSort{MovimentosManual.Domain.Entities.MovimentoManual})">
+            <summary>
+            Consulta paginada de lançamentos manuais com filtros e ordenação.
+            </summary>
+            <param name="request">Parâmetros de paginação e ordenação</param>
+            <returns>Lista paginada de lançamentos manuais.</returns>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.MovimentoManualController.Post(MovimentosManual.Application.Models.Request.MovimentoManualRequest)">
+            <summary>
+            Cria um novo lançamento manual.
+            </summary>
+            <param name="request">Dados do lançamento manual</param>
+            <returns>O lançamento criado.</returns>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.MovimentoManualController.Put(System.Int32,System.Int32,System.Int64,MovimentosManual.Application.Models.Request.MovimentoManualRequest)">
+            <summary>
+            Atualiza um lançamento manual existente.
+            </summary>
+            <param name="mes">Mês do lançamento</param>
+            <param name="ano">Ano do lançamento</param>
+            <param name="numero">Número do lançamento</param>
+            <param name="request">Dados atualizados</param>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.MovimentoManualController.Delete(System.Int32,System.Int32,System.Int64)">
+            <summary>
+            Remove um lançamento manual por chave composta.
+            </summary>
+            <param name="mes">Mês do lançamento</param>
+            <param name="ano">Ano do lançamento</param>
+            <param name="numero">Número do lançamento</param>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.ProdutoController.GetAll">
+            <summary>
+            Retorna todos os produtos cadastrados.
+            </summary>
+            <returns>Lista de produtos.</returns>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.ProdutoController.GetByCodigo(System.String)">
+            <summary>
+            Retorna um produto pelo código.
+            </summary>
+            <param name="codigo">Código do produto</param>
+            <returns>Produto encontrado ou 404.</returns>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.ProdutoController.Post(MovimentosManual.Application.Models.Request.ProdutoRequest)">
+            <summary>
+            Cria um novo produto.
+            </summary>
+            <param name="request">Dados do produto</param>
+            <returns>Produto criado ou erro de validação/duplicação.</returns>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.ProdutoController.Put(System.String,MovimentosManual.Application.Models.Request.ProdutoRequest)">
+            <summary>
+            Atualiza um produto existente.
+            </summary>
+            <param name="codigo">Código do produto</param>
+            <param name="request">Dados atualizados</param>
+            <returns>NoContent em caso de sucesso, ou erro de validação.</returns>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.ProdutoController.Delete(System.String)">
+            <summary>
+            Remove um produto pelo código.
+            </summary>
+            <param name="codigo">Código do produto</param>
+            <returns>NoContent em caso de sucesso.</returns>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.ProdutoController.GetPaginado(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Retorna uma lista paginada de produtos com filtros opcionais por descrição e status.
+            </summary>
+            <param name="descricao">Filtro por descrição</param>
+            <param name="status">Filtro por status</param>
+            <param name="page">Página atual</param>
+            <param name="pageSize">Tamanho da página</param>
+            <returns>Página de produtos filtrados.</returns>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.ProdutoCosifController.GetAll">
+            <summary>
+            Retorna todos os vínculos entre Produto e Cosif.
+            </summary>
+            <returns>Lista de ProdutoCosif.</returns>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.ProdutoCosifController.GetById(System.String,System.String)">
+            <summary>
+            Retorna um vínculo Produto x Cosif por identificadores.
+            </summary>
+            <param name="codigoProduto">Código do produto</param>
+            <param name="codigoCosif">Código do cosif</param>
+            <returns>Objeto ProdutoCosif correspondente.</returns>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.ProdutoCosifController.Post(MovimentosManual.Application.Models.Request.ProdutoCosifRequest)">
+            <summary>
+            Cria um novo vínculo Produto x Cosif.
+            </summary>
+            <param name="request">Dados do vínculo</param>
+            <returns>Objeto criado.</returns>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.ProdutoCosifController.Put(System.String,System.String,MovimentosManual.Application.Models.Request.ProdutoCosifRequest)">
+            <summary>
+            Atualiza um vínculo existente Produto x Cosif.
+            </summary>
+            <param name="codigoProduto">Código do produto</param>
+            <param name="codigoCosif">Código do cosif</param>
+            <param name="request">Dados atualizados</param>
+            <returns>NoContent em caso de sucesso.</returns>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.ProdutoCosifController.Delete(System.String,System.String)">
+            <summary>
+            Remove um vínculo Produto x Cosif.
+            </summary>
+            <param name="codigoProduto">Código do produto</param>
+            <param name="codigoCosif">Código do cosif</param>
+            <returns>NoContent se removido.</returns>
+        </member>
+        <member name="M:MovimentosManual.Api.Controllers.ProdutoCosifController.GetPaginado(System.String,System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Retorna uma lista paginada de vínculos Produto x Cosif com filtros opcionais.
+            </summary>
+            <param name="status">Filtro por status</param>
+            <param name="produto">Filtro por descrição do produto</param>
+            <param name="cosif">Filtro por código Cosif</param>
+            <param name="page">Página atual</param>
+            <param name="pageSize">Tamanho da página</param>
+            <returns>Lista paginada de ProdutoCosifResponse</returns>
+        </member>
+    </members>
+</doc>

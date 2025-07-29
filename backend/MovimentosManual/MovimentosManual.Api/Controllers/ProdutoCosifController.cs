@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using MovimentosManual.Domain.Entities;
 using MovimentosManual.Core.Interfaces;
 using MovimentosManual.Infrastructure.Common.Linq;
-using MovimentosManual.Core.Pagination; // Corrigido
+using MovimentosManual.Core.Pagination;
 using AutoMapper;
 using MovimentosManual.Core.Common;
 using MovimentosManual.Application.Models.Response;
@@ -12,6 +12,7 @@ namespace MovimentosManual.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Produces("application/json")]
     public class ProdutoCosifController : ControllerBase
     {
         private readonly IProdutoCosifService _service;
@@ -25,14 +26,27 @@ namespace MovimentosManual.Api.Controllers
 
         #region GET
 
+        /// <summary>
+        /// Retorna todos os vínculos entre Produto e Cosif.
+        /// </summary>
+        /// <returns>Lista de ProdutoCosif.</returns>
         [HttpGet]
+        [ProducesResponseType(typeof(List<ProdutoCosifResponse>), 200)]
         public async Task<ActionResult<List<ProdutoCosifResponse>>> GetAll()
         {
             var entidades = await _service.ListarTodos();
             return Ok(_mapper.Map<List<ProdutoCosifResponse>>(entidades));
         }
 
+        /// <summary>
+        /// Retorna um vínculo Produto x Cosif por identificadores.
+        /// </summary>
+        /// <param name="codigoProduto">Código do produto</param>
+        /// <param name="codigoCosif">Código do cosif</param>
+        /// <returns>Objeto ProdutoCosif correspondente.</returns>
         [HttpGet("{codigoProduto}/{codigoCosif}")]
+        [ProducesResponseType(typeof(ProdutoCosifResponse), 200)]
+        [ProducesResponseType(404)]
         public async Task<ActionResult<ProdutoCosifResponse>> GetById(string codigoProduto, string codigoCosif)
         {
             var entidade = await _service.Obter(codigoProduto, codigoCosif);
@@ -43,7 +57,14 @@ namespace MovimentosManual.Api.Controllers
 
         #region POST / PUT / DELETE
 
+        /// <summary>
+        /// Cria um novo vínculo Produto x Cosif.
+        /// </summary>
+        /// <param name="request">Dados do vínculo</param>
+        /// <returns>Objeto criado.</returns>
         [HttpPost]
+        [ProducesResponseType(typeof(ProdutoCosifResponse), 201)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> Post([FromBody] ProdutoCosifRequest request)
         {
             if (!ModelState.IsValid)
@@ -60,7 +81,16 @@ namespace MovimentosManual.Api.Controllers
             }, response);
         }
 
+        /// <summary>
+        /// Atualiza um vínculo existente Produto x Cosif.
+        /// </summary>
+        /// <param name="codigoProduto">Código do produto</param>
+        /// <param name="codigoCosif">Código do cosif</param>
+        /// <param name="request">Dados atualizados</param>
+        /// <returns>NoContent em caso de sucesso.</returns>
         [HttpPut("{codigoProduto}/{codigoCosif}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> Put(string codigoProduto, string codigoCosif, [FromBody] ProdutoCosifRequest request)
         {
             if (!ModelState.IsValid)
@@ -74,7 +104,14 @@ namespace MovimentosManual.Api.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Remove um vínculo Produto x Cosif.
+        /// </summary>
+        /// <param name="codigoProduto">Código do produto</param>
+        /// <param name="codigoCosif">Código do cosif</param>
+        /// <returns>NoContent se removido.</returns>
         [HttpDelete("{codigoProduto}/{codigoCosif}")]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> Delete(string codigoProduto, string codigoCosif)
         {
             await _service.Remover(codigoProduto, codigoCosif);
@@ -85,7 +122,17 @@ namespace MovimentosManual.Api.Controllers
 
         #region PAGINAÇÃO
 
+        /// <summary>
+        /// Retorna uma lista paginada de vínculos Produto x Cosif com filtros opcionais.
+        /// </summary>
+        /// <param name="status">Filtro por status</param>
+        /// <param name="produto">Filtro por descrição do produto</param>
+        /// <param name="cosif">Filtro por código Cosif</param>
+        /// <param name="page">Página atual</param>
+        /// <param name="pageSize">Tamanho da página</param>
+        /// <returns>Lista paginada de ProdutoCosifResponse</returns>
         [HttpGet("paged")]
+        [ProducesResponseType(typeof(PagedResult<ProdutoCosifResponse>), 200)]
         public async Task<IActionResult> GetPaginado(
             [FromQuery] string? status,
             [FromQuery] string? produto,
@@ -119,7 +166,6 @@ namespace MovimentosManual.Api.Controllers
                 Items = _mapper.Map<List<ProdutoCosifResponse>>(resultado.Items)
             });
         }
-
 
         #endregion
     }

@@ -187,3 +187,5 @@ C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\obj\Deb
 C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\obj\Debug\net8.0\MovimentosManual.Api.pdb
 C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\obj\Debug\net8.0\MovimentosManual.Api.genruntimeconfig.cache
 C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\obj\Debug\net8.0\ref\MovimentosManual.Api.dll
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\bin\Debug\net8.0\MovimentosManual.Api.xml
+C:\Dev-Cap\bnp-paribas-mvp\backend\MovimentosManual\MovimentosManual.Api\obj\Debug\net8.0\MovimentosManual.Api.xml

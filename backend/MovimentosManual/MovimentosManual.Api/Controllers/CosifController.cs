@@ -14,6 +14,7 @@ namespace MovimentosManual.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Produces("application/json")]
     public class CosifController : ControllerBase
     {
         private readonly ICosifService _cosifService;
@@ -27,14 +28,24 @@ namespace MovimentosManual.Api.Controllers
 
         #region GETs
 
+        /// <summary>
+        /// Retorna todos os registros Cosif.
+        /// </summary>
         [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<CosifResponse>), 200)]
         public async Task<ActionResult<IEnumerable<CosifResponse>>> GetAll()
         {
             var entidades = await _cosifService.ListarTodos();
             return Ok(_mapper.Map<IEnumerable<CosifResponse>>(entidades));
         }
 
+        /// <summary>
+        /// Retorna um registro Cosif por código.
+        /// </summary>
+        /// <param name="codigo">Código Cosif</param>
         [HttpGet("{codigo}")]
+        [ProducesResponseType(typeof(CosifResponse), 200)]
+        [ProducesResponseType(404)]
         public async Task<ActionResult<CosifResponse>> GetByCodigo(string codigo)
         {
             var entidade = await _cosifService.ObterPorCodigo(codigo);
@@ -43,11 +54,14 @@ namespace MovimentosManual.Api.Controllers
             return Ok(_mapper.Map<CosifResponse>(entidade));
         }
 
+        /// <summary>
+        /// Retorna uma lista paginada de registros Cosif com filtros e ordenação.
+        /// </summary>
         [HttpGet("paged")]
+        [ProducesResponseType(typeof(PagedResult<CosifResponse>), 200)]
         public async Task<IActionResult> GetPaged([FromQuery] PagedRequestWithSort<CosifFilter> request)
         {
             var filtro = BuildFilter(request.Filters);
-
             var ordenacoes = BuildOrdering(request);
 
             var resultado = await _cosifService.BuscarPaginado(new PagedQuery<Cosif>
@@ -71,7 +85,12 @@ namespace MovimentosManual.Api.Controllers
 
         #region POST/PUT/DELETE
 
+        /// <summary>
+        /// Cria um novo registro Cosif.
+        /// </summary>
         [HttpPost]
+        [ProducesResponseType(typeof(CosifResponse), 201)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> Post([FromBody] CosifRequest request)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -83,7 +102,13 @@ namespace MovimentosManual.Api.Controllers
             return CreatedAtAction(nameof(GetByCodigo), new { codigo = entidade.CodigoCosif }, dto);
         }
 
+        /// <summary>
+        /// Atualiza um registro Cosif existente.
+        /// </summary>
+        /// <param name="codigo">Código Cosif</param>
         [HttpPut("{codigo}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> Put(string codigo, [FromBody] CosifRequest request)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -95,7 +120,12 @@ namespace MovimentosManual.Api.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Remove um registro Cosif pelo código.
+        /// </summary>
+        /// <param name="codigo">Código Cosif</param>
         [HttpDelete("{codigo}")]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> Delete(string codigo)
         {
             await _cosifService.Remover(codigo);

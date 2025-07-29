@@ -242,6 +242,23 @@ Contribuições, correções ou melhorias são bem-vindas!
 * ✅ MVP entregue e funcional
 * 🔧 Aberto para melhorias e refatorações
 
+### 1. Modello Database
+![Model](./backend/files/diagram-sql.png)
+
+### 2. Swagger
+![Swagger](./backend/files/swagger.png)
+
+### 3. Menu
+![Login](./backend/files/01.png)
+
+### 4. Cadastro de Produtos
+![Tela](./backend/files/02.png)
+
+### 5. Cadastro de Cosifs
+![Tela](./backend/files/03.png)
+
+### 6.Cadastro de Movimento Manual
+![Tela](./backend/files/04.png)
 ---
 
 > *Desenvolvido com 💚 por um estrategista fullstack comprometido com escalabilidade, boas práticas e código limpo.*

@@ -1,6 +1,3 @@
-// ================================
-// MovimentoManualController.cs
-// ================================
 using Microsoft.AspNetCore.Mvc;
 using MovimentosManual.Domain.Entities;
 using MovimentosManual.Core.Interfaces;
@@ -14,6 +11,7 @@ namespace MovimentosManual.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Produces("application/json")]
     public class MovimentoManualController : ControllerBase
     {
         private readonly IMovimentoManualService _movimentoService;
@@ -32,6 +30,7 @@ namespace MovimentosManual.Api.Controllers
         /// <summary>
         /// Lista todos os lançamentos manuais.
         /// </summary>
+        /// <returns>Lista de lançamentos manuais.</returns>
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<MovimentoManualResponse>), 200)]
         public async Task<IActionResult> GetAll()
@@ -41,8 +40,12 @@ namespace MovimentosManual.Api.Controllers
         }
 
         /// <summary>
-        /// Consulta lançamento manual por chave composta.
+        /// Consulta um lançamento manual por chave composta (mês, ano e número).
         /// </summary>
+        /// <param name="mes">Mês do lançamento</param>
+        /// <param name="ano">Ano do lançamento</param>
+        /// <param name="numero">Número do lançamento</param>
+        /// <returns>Dados do lançamento encontrado.</returns>
         [HttpGet("{mes:int}/{ano:int}/{numero:long}")]
         [ProducesResponseType(typeof(MovimentoManualResponse), 200)]
         [ProducesResponseType(404)]
@@ -53,8 +56,10 @@ namespace MovimentosManual.Api.Controllers
         }
 
         /// <summary>
-        /// Consulta paginada com filtros e ordenação avançada.
+        /// Consulta paginada de lançamentos manuais com filtros e ordenação.
         /// </summary>
+        /// <param name="request">Parâmetros de paginação e ordenação</param>
+        /// <returns>Lista paginada de lançamentos manuais.</returns>
         [HttpGet("paged")]
         [ProducesResponseType(typeof(PagedResult<MovimentoManualResponse>), 200)]
         public async Task<IActionResult> GetPaged([FromQuery] PagedRequestWithSort<MovimentoManual> request)
@@ -74,6 +79,11 @@ namespace MovimentosManual.Api.Controllers
 
         #region POST / PUT / DELETE
 
+        /// <summary>
+        /// Cria um novo lançamento manual.
+        /// </summary>
+        /// <param name="request">Dados do lançamento manual</param>
+        /// <returns>O lançamento criado.</returns>
         [HttpPost]
         [ProducesResponseType(typeof(MovimentoManualResponse), 201)]
         [ProducesResponseType(400)]
@@ -93,6 +103,13 @@ namespace MovimentosManual.Api.Controllers
             }, _mapper.Map<MovimentoManualResponse>(entidade));
         }
 
+        /// <summary>
+        /// Atualiza um lançamento manual existente.
+        /// </summary>
+        /// <param name="mes">Mês do lançamento</param>
+        /// <param name="ano">Ano do lançamento</param>
+        /// <param name="numero">Número do lançamento</param>
+        /// <param name="request">Dados atualizados</param>
         [HttpPut("{mes:int}/{ano:int}/{numero:long}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -110,6 +127,12 @@ namespace MovimentosManual.Api.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Remove um lançamento manual por chave composta.
+        /// </summary>
+        /// <param name="mes">Mês do lançamento</param>
+        /// <param name="ano">Ano do lançamento</param>
+        /// <param name="numero">Número do lançamento</param>
         [HttpDelete("{mes:int}/{ano:int}/{numero:long}")]
         [ProducesResponseType(204)]
         public async Task<IActionResult> Delete(int mes, int ano, long numero)

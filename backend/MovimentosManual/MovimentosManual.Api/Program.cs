@@ -6,6 +6,8 @@ using MovimentosManual.Application.Services;
 using MovimentosManual.Infrastructure.Repositories;
 using MovimentosManual.Api.Mappings;
 using MovimentosManual.Infrastructure.Helpers;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,11 +17,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                      .AddEnvironmentVariables();
 
-// Logging
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 
-// Strings de conexão
 var localConn = builder.Configuration.GetConnectionString("LocalhostConnection");
 var dockerConn = builder.Configuration.GetConnectionString("DockerConnection");
 string? finalConnectionString = null;
@@ -58,8 +58,24 @@ builder.Services.AddScoped<IMovimentoManualService, MovimentoManualService>();
 
 builder.Services.AddAutoMapper(typeof(MovimentoManualProfile));
 builder.Services.AddControllers();
+
+// -----------------------------
+// SWAGGER COMPLETO
+// -----------------------------
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "MovimentosManual API",
+        Version = "v1",
+        Description = "API para controle de produtos, cosifs e lançamentos manuais."
+    });
+
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    options.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
+});
 
 // -----------------------------
 // CORS
@@ -105,15 +121,13 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-// ⚠️ HTTPS somente em produção
+// HTTPS apenas em produção
 if (!app.Environment.IsDevelopment())
 {
     app.UseHttpsRedirection();
 }
 
-// Ativa CORS antes de Authorization
 app.UseCors("AllowAngular");
-
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
