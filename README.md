@@ -245,32 +245,32 @@ Contribuições, correções ou melhorias são bem-vindas!
 ---
 
 ### 1. Modelo Database
-![Tela01](./backend/files/01.png)
+![Tela01](./backend/imagens/01.png)
 
 ---
 
 ### 2. Swagger
-![Tela02](./backend/files/02.png)
+![Tela02](./backend/imagens/02.png)
 
 ---
 
 ### 3. Menu
-![Tela03](./backend/files/03.png)
+![Tela03](./backend/imagens/03.png)
 
 ---
 
 ### 4. Cadastro de Produtos
-![Tela04](./backend/files/04.png)
+![Tela04](./backend/imagens/04.png)
 
 ---
 
 ### 5. Cadastro de Cosifs
-![Tela05](./backend/files/05.png)
+![Tela05](./backend/imagens/05.png)
 
 ---
 
 ### 6.Cadastro de Movimento Manual
-![Tela06](./backend/files/06.png)
+![Tela06](./backend/imagens/06.png)
 
 ---
 
