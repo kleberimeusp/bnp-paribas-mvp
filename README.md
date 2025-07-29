@@ -242,10 +242,8 @@ Contribuições, correções ou melhorias são bem-vindas!
 * ✅ MVP entregue e funcional
 * 🔧 Aberto para melhorias e refatorações
 
-> *Desenvolvido com 💚 por um estrategista fullstack comprometido com escalabilidade, boas práticas e código limpo.*
-
-```
-
 ---
+
+> *Desenvolvido com 💚 por um estrategista fullstack comprometido com escalabilidade, boas práticas e código limpo.*
 
 
