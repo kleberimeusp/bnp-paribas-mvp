@@ -259,6 +259,7 @@ Contribuições, correções ou melhorias são bem-vindas!
 
 ### 6.Cadastro de Movimento Manual
 ![Tela](./backend/files/04.png)
+
 ---
 
 > *Desenvolvido com 💚 por um estrategista fullstack comprometido com escalabilidade, boas práticas e código limpo.*
