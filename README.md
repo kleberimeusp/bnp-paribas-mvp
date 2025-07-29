@@ -245,32 +245,32 @@ Contribuições, correções ou melhorias são bem-vindas!
 ---
 
 ### 1. Modelo Database
-![Tela01](./backend/imagens/01.png)
+![Tela01](https://raw.githubusercontent.com/kleberimeusp/bnp-paribas-mvp/main/backend/imagens/01.png)
 
 ---
 
 ### 2. Swagger
-![Tela02](./backend/imagens/02.png)
+![Tela02](https://raw.githubusercontent.com/kleberimeusp/bnp-paribas-mvp/main/backend/imagens/02.png)
 
 ---
 
-### 4. Menu
-![Tela05](./backend/imagens/03.png)
+### 3. Menu
+![Tela05](https://raw.githubusercontent.com/kleberimeusp/bnp-paribas-mvp/main/backend/imagens/03.png)
 
 ---
 
 ### 4. Cadastro de Produtos
-![Tela04](./backend/imagens/04.png)
+![Tela04](https://raw.githubusercontent.com/kleberimeusp/bnp-paribas-mvp/main/backend/imagens/04.png)
 
 ---
 
 ### 5. Cadastro de Cosifs
-![Tela05](./backend/imagens/05.png)
+![Tela05](https://raw.githubusercontent.com/kleberimeusp/bnp-paribas-mvp/main/backend/imagens/05.png)
 
 ---
 
-### 6.Cadastro de Movimento Manual
-![Tela06](./backend/imagens/06.png)
+### 6. Cadastro de Movimento Manual
+![Tela06](https://raw.githubusercontent.com/kleberimeusp/bnp-paribas-mvp/main/backend/imagens/06.png)
 
 ---
 
