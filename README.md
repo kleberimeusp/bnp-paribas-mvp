@@ -259,8 +259,8 @@ Contribuições, correções ou melhorias são bem-vindas!
 
 ---
 
-### 4. Cadastro de Produtos
-![Tela04](./backend/files/04-.png)
+### 3. Cadastro de Produtos
+![Tela04-](./backend/files/04-.png)
 
 ---
 
