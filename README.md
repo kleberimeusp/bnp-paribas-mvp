@@ -203,7 +203,7 @@ Acesse: [http://localhost:4200](http://localhost:4200)
 
 * Todas as rotas expostas no padrão RESTful
 * Documentação interativa em:
-  [http://localhost:5000/swagger](http://localhost:5000/swagger)
+  [http://localhost:5000/](http://localhost:5000/)
 
 ---
 
