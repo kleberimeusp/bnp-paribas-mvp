@@ -1,3 +1,5 @@
+
+// produtos.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Produto } from './produto.model';
 import { ProdutosService } from './produtos.service';
@@ -24,7 +26,7 @@ export class ProdutosComponent implements OnInit {
     );
   }
 
-  onSubmit(): void {
+  salvar(): void {
     if (this.editando) {
       this.produtosService.atualizar(this.produto).subscribe(() => {
         this.listar();
@@ -39,17 +41,9 @@ export class ProdutosComponent implements OnInit {
     }
   }
 
-
-
   editar(p: Produto): void {
-    this.produto = {
-      codigoProduto: p.codigoProduto,
-      descricao: p.descricao,
-      status: p.status
-    };
+    this.produto = { ...p };
     this.editando = true;
-
-    console.log(this.produto);
   }
 
   excluir(codigo: string): void {
@@ -75,9 +69,8 @@ export class ProdutosComponent implements OnInit {
     return {
       codigoProduto: '',
       descricao: '',
-      status: 'A', // valor default, por exemplo 'A' para Ativo (pode ser alterado conforme sua regra)
+      status: 'A',
       produtosCosif: []
     };
   }
-
 }

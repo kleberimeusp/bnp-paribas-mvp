@@ -1,20 +1,35 @@
-.menu {
+:host {
+  display: block;
+  padding: 2rem;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.sistema-titulo {
+  color: #004d40;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.menu-botoes {
   display: flex;
-  gap: 10px;
-  margin-bottom: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
 
-  button {
-    background-color: #3d5a80;
-    color: white;
-    border: none;
-    padding: 6px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+a.btn-primary {
+  padding: 0.75rem 2rem;
+  background-color: #00796b;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
 
-    &.active,
-    &:hover {
-      background-color: #2b3a60;
-    }
-  }
+a.btn-primary:hover {
+  background-color: #004d40;
 }

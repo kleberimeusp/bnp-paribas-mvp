@@ -12,7 +12,6 @@ var builder = WebApplication.CreateBuilder(args);
 // -----------------------------
 // CONFIGURAÇÕES
 // -----------------------------
-
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                      .AddEnvironmentVariables();
 
@@ -25,7 +24,6 @@ var localConn = builder.Configuration.GetConnectionString("LocalhostConnection")
 var dockerConn = builder.Configuration.GetConnectionString("DockerConnection");
 string? finalConnectionString = null;
 
-// Testar conexões
 if (SqlConnectionTester.Test(localConn))
 {
     finalConnectionString = localConn;
@@ -43,9 +41,8 @@ else
 }
 
 // -----------------------------
-// REGISTROS DE DEPENDÊNCIA
+// SERVIÇOS E DEPENDÊNCIAS
 // -----------------------------
-
 builder.Services.AddDbContext<MovimentosDbContext>(options =>
     options.UseSqlServer(finalConnectionString, sqlOptions =>
     {
@@ -65,9 +62,21 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // -----------------------------
+// CORS
+// -----------------------------
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngular", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+// -----------------------------
 // CONSTRUÇÃO DO APP
 // -----------------------------
-
 var app = builder.Build();
 
 // Middleware de erro SQL amigável
@@ -96,7 +105,15 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseHttpsRedirection();
+// ⚠️ HTTPS somente em produção
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
+
+// Ativa CORS antes de Authorization
+app.UseCors("AllowAngular");
+
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

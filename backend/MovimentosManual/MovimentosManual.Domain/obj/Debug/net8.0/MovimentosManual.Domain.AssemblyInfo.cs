@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MovimentosManual.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b00399bdabfa01f83e98eacce81b4b0a48f576f2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3e15dc89066065d483c378f6cfe7b0a678ef1f9c")]
 [assembly: System.Reflection.AssemblyProductAttribute("MovimentosManual.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MovimentosManual.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

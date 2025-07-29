@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ProdutosComponent } from './produtos/produtos.component';
 import { CosifsComponent } from './cosifs/cosifs.component';
-import { MovimentosComponent } from './movimentos/movimentos.component'; // ✅ Importa Movimentos
+import { MovimentosComponent } from './movimentos/movimento-manual.component'; // ✅ Importa Movimentos
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },

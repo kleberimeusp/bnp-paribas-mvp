@@ -1,28 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { MovimentoManual } from '../movimentos/movimento.model';
-import { Produto } from '../produtos/produto.model';
+import { MovimentoManualService } from './movimento-manual.service';
+import { MovimentoManual } from './movimento.model';
 import { Cosif } from '../cosifs/cosif.model';
-import { MovimentoManualService } from '../movimentos/movimento-manual.service';
+import { Produto } from '../produtos/produto.model';
 import { ProdutosService } from '../produtos/produtos.service';
 import { CosifsService } from '../cosifs/cosifs.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-movimentos',
+  templateUrl: './movimento-manual.component.html',
+  styleUrls: ['./movimento-manual.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class MovimentosComponent implements OnInit {
   movimentos: MovimentoManual[] = [];
-  produtos: Produto[] = [];
   cosifs: Cosif[] = [];
-
+  produtos: Produto[] = [];
   movimento: MovimentoManual = this.novoMovimento();
   editando = false;
 
   constructor(
-    private movimentoService: MovimentoManualService,
-    private produtoService: ProdutosService,
-    private cosifService: CosifsService
+    private movimentosService: MovimentoManualService,
+    private produtosService: ProdutosService,
+    private cosifsService: CosifsService
   ) {}
 
   ngOnInit(): void {
@@ -32,10 +31,12 @@ export class HomeComponent implements OnInit {
   }
 
   carregarMovimentos(): void {
-    this.movimentoService.listarTodos().subscribe({
+    this.movimentosService.listarTodos().subscribe({
       next: data => {
         this.movimentos = data.map(m => ({
           ...m,
+          mes: m.mes.toString(),
+          ano: m.ano.toString(),
           codigoProduto: m.codigoProduto?.trim(),
           codigoCosif: m.codigoCosif?.trim(),
           descricao: m.descricao?.trim()
@@ -46,12 +47,13 @@ export class HomeComponent implements OnInit {
   }
 
   carregarProdutos(): void {
-    this.produtoService.listar().subscribe({
+    this.produtosService.listar().subscribe({
       next: data => {
         this.produtos = data.map(p => ({
           ...p,
           codigoProduto: p.codigoProduto?.trim(),
-          descricao: p.descricao?.trim()
+          descricao: p.descricao?.trim(),
+          status: p.status?.trim(),
         }));
       },
       error: err => console.error('Erro ao carregar produtos:', err)
@@ -59,12 +61,12 @@ export class HomeComponent implements OnInit {
   }
 
   carregarCosifs(): void {
-    this.cosifService.listarCosifs().subscribe({
+    this.cosifsService.listarCosifs().subscribe({
       next: data => {
         this.cosifs = data.map(c => ({
           ...c,
           codigoCosif: c.codigoCosif?.trim(),
-          descricao: c.descricao?.trim()
+          status: c.status?.trim(),
         }));
       },
       error: err => console.error('Erro ao carregar cosifs:', err)
@@ -77,46 +79,42 @@ export class HomeComponent implements OnInit {
       return;
     }
 
+    this.movimento.codigoProduto = this.movimento.codigoProduto.trim();
+    this.movimento.codigoCosif = this.movimento.codigoCosif.trim();
+    this.movimento.descricao = this.movimento.descricao.trim();
     this.movimento.codigoUsuario = 'admin';
     this.movimento.produtoCosif = `${this.movimento.codigoProduto}-${this.movimento.codigoCosif}`;
     this.movimento.dataMovimento = new Date().toISOString();
 
-    if (this.editando) {
-      this.movimentoService.atualizar(this.movimento).subscribe({
-        next: () => {
-          this.carregarMovimentos();
-          this.limpar();
-        },
-        error: err => alert('Erro ao atualizar: ' + (err.error?.erro || err.message))
-      });
-    } else {
-      this.movimentoService.incluir(this.movimento).subscribe({
-        next: () => {
-          this.carregarMovimentos();
-          this.limpar();
-        },
-        error: err => alert('Erro ao incluir: ' + (err.error?.erro || err.message))
-      });
-    }
+    const acao = this.editando
+      ? this.movimentosService.atualizar(this.movimento)
+      : this.movimentosService.incluir(this.movimento);
+
+    acao.subscribe({
+      next: () => {
+        this.carregarMovimentos();
+        this.limpar();
+      },
+      error: err => alert('Erro ao salvar movimento: ' + (err.error?.erro || err.message))
+    });
   }
 
-  editar(mov: MovimentoManual): void {
-    this.movimento = { ...mov };
+  editar(m: MovimentoManual): void {
+    this.movimento = {
+      ...m,
+      mes: m.mes.toString(),
+      ano: m.ano.toString()
+    };
     this.editando = true;
   }
 
   excluirMovimento(mov: MovimentoManual): void {
     if (confirm(`Deseja remover o movimento "${mov.descricao}"?`)) {
-      this.movimentoService.remover(mov).subscribe({
+      this.movimentosService.remover(mov).subscribe({
         next: () => this.carregarMovimentos(),
-        error: err => alert('Erro ao remover: ' + (err.error?.erro || err.message))
+        error: err => alert('Erro ao remover movimento: ' + (err.error?.erro || err.message))
       });
     }
-  }
-
-  novo(): void {
-    this.movimento = this.novoMovimento();
-    this.editando = false;
   }
 
   limpar(): void {
@@ -124,19 +122,24 @@ export class HomeComponent implements OnInit {
     this.editando = false;
   }
 
+  novo(): void {
+    this.movimento = this.novoMovimento();
+    this.editando = false;
+  }
+
   private novoMovimento(): MovimentoManual {
-    const agora = new Date();
+    const hoje = new Date();
     return {
-      mes: (agora.getMonth() + 1).toString(),
-      ano: agora.getFullYear().toString(),
+      mes: (hoje.getMonth() + 1).toString(),
+      ano: hoje.getFullYear().toString(),
       numeroLancamento: 0,
       codigoProduto: '',
       codigoCosif: '',
       descricao: '',
       valor: 0,
-      codigoUsuario: '',
+      codigoUsuario: 'admin',
       produtoCosif: '',
-      dataMovimento: agora.toISOString()
+      dataMovimento: hoje.toISOString()
     };
   }
 }

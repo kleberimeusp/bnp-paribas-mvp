@@ -1,61 +1,78 @@
 <a routerLink="/home" class="btn-voltar">Voltar</a>
 
-<h2>Cadastro de Cosif</h2>
+<h2>Cadastro de Cosifs</h2>
 
-<form (ngSubmit)="onSubmit()">
-  <div class="form-row">
-    <label>Produto:</label>
-    <select [(ngModel)]="cosif.codigoProduto" name="codigoProduto" required>
-      <option value="" disabled>Selecione</option>
-      <option *ngFor="let produto of produtos" [value]="produto.codigoProduto.trim()">
-        {{ produto.descricao }}
-      </option>
-    </select>
+<div class="cosif-formulario">
+  <form (ngSubmit)="onSubmit()" #cosifForm="ngForm">
+    <div class="form-row">
+      <div class="form-field">
+        <label for="codigoCosif">Código Cosif:</label>
+        <input
+          type="text"
+          id="codigoCosif"
+          name="codigoCosif"
+          [(ngModel)]="cosif.codigoCosif"
+          required
+          maxlength="20"
+        />
+      </div>
 
-    <label>Cosif:</label>
-    <input type="text" [(ngModel)]="cosif.codigoCosif" name="codigoCosif" required />
-  </div>
+      <div class="form-field">
+        <label for="descricao">Descrição:</label>
+        <input
+          type="text"
+          id="descricao"
+          name="descricao"
+          [(ngModel)]="cosif.descricao"
+          required
+          maxlength="100"
+        />
+      </div>
+    </div>
 
-  <div class="form-row">
-    <label>Classificação:</label>
-    <input type="text" [(ngModel)]="cosif.codigoClassificacao" name="codigoClassificacao" required />
+    <div class="form-row">
+      <div class="form-field">
+        <label for="status">Status:</label>
+        <select id="status" name="status" [(ngModel)]="cosif.status" required>
+          <option value="" disabled>Selecione</option>
+          <option value="A">Ativo</option>
+          <option value="I">Inativo</option>
+        </select>
+      </div>
+    </div>
 
-    <label>Status:</label>
-    <select [(ngModel)]="cosif.status" name="status" required>
-      <option value="" disabled>Selecione</option>
-      <option value="A">Ativo</option>
-      <option value="I">Inativo</option>
-    </select>
-  </div>
-
-  <div class="form-actions">
-    <button type="submit">{{ editando ? 'Atualizar' : 'Incluir' }}</button>
-    <button type="button" (click)="limpar()">Limpar</button>
-  </div>
-</form>
+    <div class="form-actions">
+      <button type="button" class="btn-neutral responsive" (click)="novo()">Novo</button>
+      <button type="submit" class="btn-primary responsive">{{ editando ? 'Atualizar' : 'Incluir' }}</button>
+      <button type="button" class="btn-neutral responsive" (click)="limpar()">Limpar</button>
+    </div>
+  </form>
+</div>
 
 <hr />
 
-<table>
-  <thead>
-    <tr>
-      <th>Produto</th>
-      <th>Cosif</th>
-      <th>Classificação</th>
-      <th>Status</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let c of cosifs">
-      <td>{{ c.codigoProduto }}</td>
-      <td>{{ c.codigoCosif }}</td>
-      <td>{{ c.codigoClassificacao }}</td>
-      <td>{{ c.status === 'A' ? 'Ativo' : 'Inativo' }}</td>
-      <td>
-        <button type="button" (click)="editar(c)">Editar</button>
-        <button type="button" (click)="excluir(c.codigoProduto, c.codigoCosif)">Excluir</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="cosif-listagem">
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Descrição</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of cosifs">
+          <td>{{ c.codigoCosif }}</td>
+          <td>{{ c.descricao }}</td>
+          <td>{{ c.status === 'A' ? 'Ativo' : 'Inativo' }}</td>
+          <td>
+            <button type="button" class="btn-primary responsive" (click)="editar(c)">Editar</button>
+            <button type="button" class="btn-danger responsive" (click)="excluir(c.codigoCosif)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

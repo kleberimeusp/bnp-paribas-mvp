@@ -2,50 +2,83 @@
 
 <h2>Cadastro de Produtos</h2>
 
-<form (ngSubmit)="onSubmit()">
-  <div class="form-row">
-    <label>Código:</label>
-    <input type="text" [(ngModel)]="produto.codigoProduto" name="codigoProduto" [readonly]="editando" required />
+<div class="produto-formulario card">
+  <form (ngSubmit)="salvar()" #produtoForm="ngForm">
+    <div class="form-row">
+      <div class="form-field">
+        <label for="codigoProduto">Código:</label>
+        <input
+          type="text"
+          id="codigoProduto"
+          name="codigoProduto"
+          [(ngModel)]="produto.codigoProduto"
+          [readonly]="editando"
+          required
+          placeholder="Ex: PRD001"
+        />
+      </div>
 
-    <label>Descrição:</label>
-    <input type="text" [(ngModel)]="produto.descricao" name="descricao" required />
+      <div class="form-field">
+        <label for="descricao">Descrição:</label>
+        <input
+          type="text"
+          id="descricao"
+          name="descricao"
+          [(ngModel)]="produto.descricao"
+          required
+          placeholder="Descrição do Produto"
+        />
+      </div>
+    </div>
 
-    <label>Status:</label>
-    <select [(ngModel)]="produto.status" name="status" required>
-      <option value="" disabled>Selecione</option>
-      <option value="A">Ativo</option>
-      <option value="I">Inativo</option>
-    </select>
-  </div>
+    <div class="form-row">
+      <div class="form-field">
+        <label for="status">Status:</label>
+        <select
+          id="status"
+          name="status"
+          [(ngModel)]="produto.status"
+          required
+        >
+          <option [ngValue]="null" disabled>Selecione</option>
+          <option value="A">Ativo</option>
+          <option value="I">Inativo</option>
+        </select>
+      </div>
+    </div>
 
-  <div class="form-actions">
-    <button type="button" (click)="novo()">Novo</button>
-    <button type="submit">{{ editando ? 'Atualizar' : 'Incluir' }}</button>
-    <button type="button" (click)="limpar()">Limpar</button>
-  </div>
-</form>
+    <div class="form-actions">
+      <button type="button" class="btn-neutral" (click)="novo()">Novo</button>
+      <button type="submit" class="btn-primary">{{ editando ? 'Atualizar' : 'Incluir' }}</button>
+      <button type="button" class="btn-neutral" (click)="limpar()">Limpar</button>
+    </div>
+  </form>
+</div>
 
 <hr />
 
-<table>
-  <thead>
-    <tr>
-      <th>Código</th>
-      <th>Descrição</th>
-      <th>Status</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let p of produtos">
-      <td>{{ p.codigoProduto }}</td>
-      <td>{{ p.descricao }}</td>
-      <td>{{ p.status === 'A' ? 'Ativo' : 'Inativo' }}</td>
-      <td>
-        <button type="button" (click)="editar(p)" style="background-color: #006341; color: white; border: none; padding: 4px 10px; border-radius: 4px; margin-right: 4px;">Editar</button>
-        <button type="button" (click)="excluir(p.codigoProduto)" style="background-color: #d9534f; color: white; border: none; padding: 4px 10px; border-radius: 4px;">Excluir</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
+<div class="produto-listagem">
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Descrição</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of produtos">
+          <td>{{ p.codigoProduto }}</td>
+          <td>{{ p.descricao }}</td>
+          <td>{{ p.status === 'A' ? 'Ativo' : 'Inativo' }}</td>
+          <td>
+            <button type="button" class="btn-primary" (click)="editar(p)">Editar</button>
+            <button type="button" class="btn-danger" (click)="excluir(p.codigoProduto)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

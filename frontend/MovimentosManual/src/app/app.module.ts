@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ProdutosComponent } from './produtos/produtos.component';
 import { CosifsComponent } from './cosifs/cosifs.component';
-import { MovimentosComponent } from './movimentos/movimentos.component'; // ✅ Se estiver usando Movimentos
+import { MovimentosComponent } from './movimentos/movimento-manual.component'; // ✅ Se estiver usando Movimentos
 
 @NgModule({
   declarations: [
