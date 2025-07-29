@@ -249,16 +249,16 @@ Contribuições, correções ou melhorias são bem-vindas!
 ![Swagger](./backend/files/swagger.png)
 
 ### 3. Menu
-![Login](./backend/files/01.png)
+![Menu](./backend/files/01.png)
 
 ### 4. Cadastro de Produtos
-![Tela](./backend/files/02.png)
+![Tela01](./backend/files/02.png)
 
 ### 5. Cadastro de Cosifs
-![Tela](./backend/files/03.png)
+![Tela02](./backend/files/03.png)
 
 ### 6.Cadastro de Movimento Manual
-![Tela](./backend/files/04.png)
+![Tela03](./backend/files/04.png)
 
 ---
 
