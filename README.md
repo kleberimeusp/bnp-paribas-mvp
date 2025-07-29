@@ -242,37 +242,30 @@ Contribuições, correções ou melhorias são bem-vindas!
 * ✅ MVP entregue e funcional
 * 🔧 Aberto para melhorias e refatorações
 
----
 
 ### 1. Modelo Database
-![Tela01](https://raw.githubusercontent.com/kleberimeusp/bnp-paribas-mvp/main/backend/imagens/01.png)
+![Tela01](./main/backend/imagens/01.png)
 
----
 
 ### 2. Swagger
-![Tela02](https://raw.githubusercontent.com/kleberimeusp/bnp-paribas-mvp/main/backend/imagens/02.png)
+![Tela02](./main/backend/imagens/02.png)
 
----
 
 ### 3. Menu
-![Tela05](https://raw.githubusercontent.com/kleberimeusp/bnp-paribas-mvp/main/backend/imagens/03.png)
+![Tela03](./main/backend/imagens/03.png)
 
----
 
 ### 4. Cadastro de Produtos
-![Tela04](https://raw.githubusercontent.com/kleberimeusp/bnp-paribas-mvp/main/backend/imagens/04.png)
+![Tela04](./main/backend/imagens/04.png)
 
----
 
 ### 5. Cadastro de Cosifs
-![Tela05](https://raw.githubusercontent.com/kleberimeusp/bnp-paribas-mvp/main/backend/imagens/05.png)
+![Tela05](./main/backend/imagens/05.png)
 
----
 
 ### 6. Cadastro de Movimento Manual
-![Tela06](https://raw.githubusercontent.com/kleberimeusp/bnp-paribas-mvp/main/backend/imagens/06.png)
+![Tela06](./main/backend/imagens/06.png)
 
----
 
 > *Desenvolvido com 💚 por um estrategista fullstack comprometido com escalabilidade, boas práticas e código limpo.*
 
